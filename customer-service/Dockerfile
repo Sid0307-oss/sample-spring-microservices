@@ -1,5 +1,5 @@
-FROM openjdk
-MAINTAINER Piotr Minkowski <piotr.minkowski@gmail.com>
-ADD target/customer-service.jar customer-service.jar
-ENTRYPOINT ["java", "-jar", "/customer-service.jar"]
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY target/customer-service.jar app.jar
 EXPOSE 3333
+ENTRYPOINT ["java", "-jar", "app.jar"]

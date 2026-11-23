@@ -1,5 +1,5 @@
-FROM openjdk
-MAINTAINER Piotr Minkowski <piotr.minkowski@gmail.com>
-ADD target/account-service.jar account-service.jar
-ENTRYPOINT ["java", "-jar", "/account-service.jar"]
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY target/account-service.jar app.jar
 EXPOSE 2222
+ENTRYPOINT ["java", "-jar", "app.jar"]
