@@ -10,7 +10,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Maven Build') {
             steps {
                 sh 'mvn -B clean package -DskipTests'
             }
@@ -21,5 +21,18 @@ pipeline {
                 sh 'ls -lh */target/*.jar'
             }
         }
+
+        stage('Docker Build and Deploy') {
+            steps {
+                sh 'docker compose up -d --build'
+            }
+        }
+
+        stage('Verify Containers') {
+            steps {
+                sh 'docker compose ps'
+            }
+        }
     }
 }
+
